@@ -17,7 +17,10 @@ const Register = () => {
         const confirmPassword = e.target.confirmPassword.value
         console.log(email, password, name,photo,confirmPassword);
         //register user
-        if(!/@gmail\.com$/.test(email))
+        if(!/@gmail\.com$/.test(email)){
+            setEmailError("Email must end with 2gmail.com")
+            return
+        }
         if(password.length <6){
             console.log("pass")
             setError("Password must  be 6 characters")
@@ -64,6 +67,7 @@ const Register = () => {
                                 <input type="email" placeholder="email"
                                     name='email'
                                     className="input input-bordered" required />
+                                    {emailError&&<small className='text-red-600'>{emailError}</small>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
