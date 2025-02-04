@@ -30,10 +30,22 @@ const Register = () => {
         if(password !== confirmPassword){
             setError('password did');
             return
-
         }
-
-       
+        if(!/\d{2,}$/.test(password)){
+            setError("Password must be end with at least 2 numbers")
+            return
+        }
+        if (!/[@#%^&$*]/.test(password)){
+            setError("Please Add a spcial character like @,#,$,%,^,&,*")
+            return
+        }
+       setEmailError('')
+       setError('')
+       registerUser(email,password)
+       .then(result=>console.log(result.user))
+       .catch(error=>{
+        console.error(error)
+       })
     }
     return (
         <div>
